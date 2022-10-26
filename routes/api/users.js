@@ -62,7 +62,7 @@ const payload={
 }
 
     jwt.sign(payload,config.get('jwtSecret'),{expiresIn:60000},
-    (err,token)=>{
+    (err,token)=>{ 
         if(err) throw err;
         res.json({token}); // sending back the jwt token 
 
