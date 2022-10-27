@@ -5,7 +5,7 @@ const mongoose =require('mongoose')
 const HospitalModel= new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'users'
+        ref:'user'
     },
     location:{
         type:String,
