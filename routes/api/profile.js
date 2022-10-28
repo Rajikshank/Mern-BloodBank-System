@@ -118,7 +118,7 @@ router.get('/user/:user_id',async (req,res)=>{
         
     } catch (err) {
         console.error(err.message)
-        if(err.kind== 'ObjectId'){
+        if(err.kind==='ObjectId'){
             return res.status(400).json({msg:"There is no profile for this user"})
 
         }
