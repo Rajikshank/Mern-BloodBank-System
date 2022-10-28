@@ -199,7 +199,7 @@ router.delete('/',auth,async (req,res)=>{
 
     
         const N_B_G=req.body.N_B_G;
-     
+   
     
     try {
         
