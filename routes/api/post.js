@@ -41,20 +41,50 @@ res.json(newPost);
     res.status(500).send("Server Error")
     
 }
-  
-
-
- 
 
 
 });
+
+
+
+
+//@route  PUT api/post/all/approve/:id
+//@desc   approve a post
+//@access  private
+
+router.put('/all/approve/:id',auth, async(req,res)=>{
+    
+
+    try {
+        const post =await Post.findById(req.params.id);// getting the post 
+        const user = await User.findById(req.user.id); // getting the user for check its a hospital account or not 
+
+        if(user.Hospital){
+            post.Aprovel= req.body.Approvel;
+            await post.save();
+            return res.json({msg:'Post '+ (req.body.Approvel===true ? 'Approved' : 'Not Approved')})
+        }
+
+        
+       res.json({msg:'Access denied'});
+    } catch (err) {
+        console.error(err.message)
+    if(err.kind==='ObjectId'){
+        return res.status(404).json({msg:'Post not found '})
+    }
+    res.status(500).send("Server Error")
+        
+    }
+})
+
+
 
 
 //@route  GET api/post/
 //@desc   Get all posts
 //@access  private
 
-router.get('/',auth,async (req,res)=>{
+router.get('/all',auth,async (req,res)=>{
     try {
         const posts=await Post.find().sort({date:-1});
         res.json(posts);
@@ -66,8 +96,30 @@ router.get('/',auth,async (req,res)=>{
 
 
 
+//@route  GET api/post/
+//@desc   Get only the approved posts
+//@access  private
+
+router.get('/',auth,async (req,res)=>{
+    try {
+        const posts=await Post.find().sort({date:-1});
+        const acc_post=posts.filter(post=>post.Aprovel===true);
+       // console.log(acc_post);
+
+
+        res.json(acc_post);
+    } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+    }
+})
+
+
+
+
+
 //@route  GET api/post/:id
-//@desc   Get all posts
+//@desc   Get post by id 
 //@access  private
 
 router.get('/:id',auth,async (req,res)=>{
@@ -108,13 +160,13 @@ router.delete('/:id',auth,async (req,res)=>{
         }
         
         await post.remove();
-        res.json({msg:'Post removed'})
+        res.json({msg:'Post removedd'})
     } catch (err) {
     console.error(err.message)
     if(err.kind==='ObjectId'){
         return res.status(404).json({msg:'Post not found '})
     }
-    res.status(500).send("Server Error")
+    res.status(500).send("Server Error") 
     }
 })
 
@@ -186,3 +238,4 @@ router.put('/rm-participants/:id',auth,async(req,res)=>{
 
 
 module.exports=router
+ 

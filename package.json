@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Team_Avengers",
   "license": "MIT",
@@ -19,7 +21,9 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.7",
-    "request": "^2.88.2"
+    "react-scripts": "^5.0.1",
+    "request": "^2.88.2",
+    "webpack-dev-middleware": "^5.3.3"
   },
   "devDependencies": {
     "concurrently": "^7.4.0",
