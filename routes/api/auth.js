@@ -7,6 +7,7 @@ const bcrypt=require('bcryptjs')
 const {check,validationResult}=require('express-validator');
 
 const auth=require('../../middleware/auth')
+const { json } = require('body-parser')
 
 //@route  GET api/auth
 //@desc   Test route
@@ -60,7 +61,7 @@ if(!user){
  if(!isMatch){
     return res.status(400).json({errors:[{msg:'invalid Credential'}]})
  }
- 
+
 
 //return jwt 
 const payload={

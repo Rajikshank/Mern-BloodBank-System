@@ -29,13 +29,18 @@ async (req,res)=>{
         return res.status(400).json({errors:errors.array()});
    }
 
-   const {name,email,password}=req.body; //destructuring credential from request 
+   const {name,email,password,Hospital,edit}=req.body; //destructuring credential from request 
    try {
 
 //seek for the user details
 let user = await User.findOne({email})
 
-if(user){
+if(edit && user){
+    user =await User.findOneAndUpdate({user:req.user.id},{$set:ProfileField},{new:true})
+    return res.json(user)
+}
+
+else if(edit === false && user){
  return res.status(400).json({errors:[{msg:'User already exits'}]})
 } 
 
@@ -46,7 +51,7 @@ const avatar=gravatar.url(email,{
     d:'mm'
 })
 
-user=new User({name,email,avatar,password});//create user model
+user=new User({name,email,avatar,password,Hospital});//create user model
 
 //password encrypt 
 const salt =await bcrypt.genSalt(10);

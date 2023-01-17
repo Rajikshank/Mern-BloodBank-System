@@ -13,16 +13,16 @@ const { json } = require('express');
 //@route  GET api/hospitals/
 //@desc   get current hospital
 //@acess  private
-router.get('/account',auth,async (req,res)=>{
+router.get('/me',auth,async (req,res)=>{
 
     try {
-
+    
         const hospital=await Hospitals.findOne({user:req.user.id}).populate('user',['avatar','name']);
         
         if(!hospital){
             return res.status(400).json({msg:'No hospital profile Found'})
         }
-
+       
         res.json(hospital)
         
     } catch (err) {

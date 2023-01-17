@@ -23,6 +23,7 @@
     "mongoose": "^6.6.7",
     "react-scripts": "^5.0.1",
     "request": "^2.88.2",
+    "uuid": "^9.0.0",
     "webpack-dev-middleware": "^5.3.3"
   },
   "devDependencies": {
