@@ -33,8 +33,8 @@ function App() {
     <Provider store={store}>
     <Router>
     <Fragment>
-       <Navbar/>
-       <Routes>
+       <Navbar/> 
+       <Routes> 
       <Route  path='/' element={<Register/>}/>
       </Routes>
       <section className='container'>

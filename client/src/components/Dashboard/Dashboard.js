@@ -5,7 +5,8 @@ import { getCurrentProfile } from '../../actions/profile';
 import { getCurrentHospital } from '../../actions/Hospitals';
 import Loading from '../Loading'
 import { Action } from './Action';
-
+import Cardview from './Card';
+import { Row } from 'antd';
 const Dashboard = ({getCurrentProfile,auth:{user,Donor},profile:{profile,loading}}) => {
 
 useEffect(()=>{
@@ -29,6 +30,13 @@ useEffect(()=>{
     {profile!==null ? 
     <Fragment>
       <Action/>
+      <Row  justify={'center'} gutter={[60,60]}>
+      <Cardview classname='fas fa-user' name='Available Blood Packages'/>
+      <Cardview classname='fas fa-hand-holding-heart' name="Needed Blood Group"/>
+      <Cardview/>
+
+      </Row>
+      
     </Fragment> :<Fragment> not available</Fragment>}
   </Fragment>
 }

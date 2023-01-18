@@ -29,18 +29,13 @@ async (req,res)=>{
         return res.status(400).json({errors:errors.array()});
    }
 
-   const {name,email,password,Hospital,edit}=req.body; //destructuring credential from request 
+   const {name,email,password,Hospital}=req.body; //destructuring credential from request 
    try {
 
 //seek for the user details
 let user = await User.findOne({email})
 
-if(edit && user){
-    user =await User.findOneAndUpdate({user:req.user.id},{$set:ProfileField},{new:true})
-    return res.json(user)
-}
-
-else if(edit === false && user){
+if(user){
  return res.status(400).json({errors:[{msg:'User already exits'}]})
 } 
 

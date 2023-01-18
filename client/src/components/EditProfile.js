@@ -11,6 +11,7 @@ import { getCurrentProfile } from '../actions/profile';
 export const EditHospitalProfile= ({ auth:{user},profile:{profile,loading},EditProfile,getCurrentProfile})  => {
 
 var initialstate={}
+
 if(user!==null && user.Hospital){
   
 initialstate={
@@ -56,7 +57,7 @@ else if (user !==null && user.Hospital===false){
 
 
 useEffect(()=>{
-var profileData=null;
+var profileData={};
 
 if(!profile) getCurrentProfile(user.Hospital);
 
@@ -89,7 +90,7 @@ const onSubmit=e=>{
           <input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
         </div>
          
-     
+    
         <div className="form-group">
           <input type="text" placeholder="Available Blood package count" name="A_B_C" required value={A_B_C} onChange={e=>onChange(e)}/>
         </div>
