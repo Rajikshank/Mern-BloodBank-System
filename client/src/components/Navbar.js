@@ -13,6 +13,13 @@ const authlinks=(
 
   <ul>
     <li>
+      <Link   to='/Hospitals'>
+      <i class="fa-solid fa-hospital"></i>{' '}
+ 
+       Hospitals</Link>
+    </li>
+
+    <li>
       <Link   to='/dashboard'>
       <i class="fas fa-stream"></i>{' '}
  

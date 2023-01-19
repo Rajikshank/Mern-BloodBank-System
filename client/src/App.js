@@ -15,7 +15,9 @@ import { loadUser } from './actions/authdonor';
 import setAuthToken from './utils/setAuthToken';
 import Dashboard from './components/Dashboard/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
-import EditProfile from './components/EditProfile'
+import EditProfile from './components/EditProfile';
+import Hospitals from './components/Dashboard/Hospitals';
+
 if(localStorage.token){
   setAuthToken(localStorage.token)
 }
@@ -45,6 +47,7 @@ function App() {
     
     <Route path='/login' element={<Login/>}/>
     <Route path="/Dashboard" element={<PrivateRoute component={Dashboard} />} />
+    <Route path="/Hospitals" element={<PrivateRoute component={Hospitals} />} />
     <Route path="/edit-profile" element={<PrivateRoute component={EditProfile} />} />
     </Routes>
 

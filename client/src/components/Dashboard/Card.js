@@ -22,7 +22,7 @@ const onChange = (value) => {
           marginTop: 16,background: '#f5f5f5'
         }}
         actions={[
-          <Button type="primary" shape="round" size='small' onClick={()=>setEdit(!edit)} > {edit ? "Update" :"Edit"} </Button>,
+          <Button type="primary" shape="round" style={{background:'red'}}size='small' onClick={()=>setEdit(!edit)} > {edit ? "Update" :"Edit"} </Button>,
           
         ]}
       >

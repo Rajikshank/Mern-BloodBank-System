@@ -1,11 +1,11 @@
 import React,{Fragment} from 'react';
-import { Alert, Space, Spin } from 'antd';
+import {  Spin } from 'antd';
 
  
 
 const Loading = () => (
   <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
-  <Spin size="large"  />
+  <Spin size="large" />
 </div>
   );
 
