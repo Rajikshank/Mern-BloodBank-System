@@ -5,6 +5,7 @@ const bcrypt=require('bcryptjs')
 const config=require('config')
 const jwt=require('jsonwebtoken')
 const {check,validationResult}=require('express-validator');
+const auth=require('../../middleware/auth')
 
 
 const User=require('../../models/Users')
@@ -71,6 +72,58 @@ const payload={
 
 
      
+    
+   } catch (err) {
+    
+    console.error(err.message)
+    res.status(500).send('Server error')
+   }
+
+   
+}
+)
+
+
+
+//@route  POST api/users
+//@desc   Register user
+//@access  Public 
+router.post('/edit',
+// validating input from user
+[auth,
+    check('name',"Name is required").not().isEmpty(),
+     
+    check('password',"please enter a password with 8 characted").isLength({min:8})
+
+],
+async (req,res)=>{
+     
+   const errors=validationResult(req)
+   if(!errors.isEmpty()){
+        return res.status(400).json({errors:errors.array()});
+   }
+
+   const {name,password}=req.body; //destructuring credential from request 
+   //password encrypt 
+    const salt =await bcrypt.genSalt(10);
+    
+   
+   try {
+
+//seek for the user details
+let user = await User.findOne({_id:req.user.id})
+
+if(user){
+     user.name =name; 
+     user.password=await bcrypt.hash(password,salt);
+     await user.save();
+     return res.json(user)
+} 
+
+
+
+ 
+ 
     
    } catch (err) {
     

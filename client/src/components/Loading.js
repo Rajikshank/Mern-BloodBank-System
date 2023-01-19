@@ -1,17 +1,12 @@
 import React,{Fragment} from 'react';
- 
+import { Alert, Space, Spin } from 'antd';
 
  
 
-const Loading= ()=>{
-   
-    <Fragment>
-        <img src={require('./Loading.gif')}
-        style ={{Width :'200px' , margin:'auto',display:'block'}}
-        alt='Loading...'/>
-         {console.log('loading run ')}
-    </Fragment>
-}
+const Loading = () => (
+  <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
+  <Spin size="large"  />
+</div>
+  );
 
-
-export default Loading
+  export default Loading;

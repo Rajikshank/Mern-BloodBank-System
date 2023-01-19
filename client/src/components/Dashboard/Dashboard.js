@@ -30,10 +30,10 @@ useEffect(()=>{
     {profile!==null ? 
     <Fragment>
       <Action/>
-      <Row  justify={'center'} gutter={[60,60]}>
-      <Cardview classname='fas fa-user' name='Available Blood Packages'/>
-      <Cardview classname='fas fa-hand-holding-heart' name="Needed Blood Group"/>
-      <Cardview/>
+      <Row  justify={'start'} gutter={[60,60]}>
+      <Cardview classname='fas fa-user' name='Available Blood Packages' value={profile.A_B_C}/>
+      <Cardview classname='fas fa-hand-holding-heart' name="Needed Blood Group" value={"A+,B,AB+"}/>
+     
 
       </Row>
       

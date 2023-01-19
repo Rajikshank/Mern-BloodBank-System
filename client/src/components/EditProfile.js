@@ -63,6 +63,7 @@ if(!profile) getCurrentProfile(user.Hospital);
 
 if(!loading && profile) {
   profileData={...initialstate}
+  profileData.name=user.name;
   for (const key in profile) {
     if (key in profileData) profileData[key] = profile[key];
   }
@@ -107,7 +108,7 @@ const onSubmit=e=>{
             type="password"
             placeholder="Password"
             name="password"
-            value={password}
+             
             minLength="6" 
             onChange={e=>onChange(e)}
           />
@@ -117,7 +118,7 @@ const onSubmit=e=>{
             type="password"
             placeholder="Confirm Password"
             name="password2"
-            value={password2}
+            
             minLength="6"
             onChange={e=>onChange(e)}
           />

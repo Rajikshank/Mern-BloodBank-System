@@ -22,15 +22,15 @@ const onChange = (value) => {
           marginTop: 16,background: '#f5f5f5'
         }}
         actions={[
-          <Button type="primary" shape="round" size='large' onClick={()=>setEdit(!edit)} > {edit ? "Update" :"Edit"} </Button>,
+          <Button type="primary" shape="round" size='small' onClick={()=>setEdit(!edit)} > {edit ? "Update" :"Edit"} </Button>,
           
         ]}
       >
         <Skeleton loading={false} avatar active>
           <Meta
             avatar={<i className={props.classname}></i>}
-            title={props.name}
-            description="This is the description"
+            title={<h4 style={{ fontSize: '18px' }}>{props.value}</h4>}
+            description={props.name}
           />
         </Skeleton>
       </Card>

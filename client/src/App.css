@@ -575,3 +575,8 @@ button {
     padding: 0.3rem 0.4rem;
   }
 }
+
+.my-spin .ant-spin-dot-spin {
+  border-color: red;
+   color: red;
+}

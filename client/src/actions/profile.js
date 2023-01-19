@@ -1,7 +1,10 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { GET_PROFILE,PROFILE_ERROR, UPDATE_PROFILE } from "./types";
+import { loadUser } from "./authHospital";
+import { CLEAR_PROFILE, DELETE_ACCCOUNT, GET_PROFILE,GET_PROFILES,PROFILE_ERROR, UPDATE_PROFILE } from "./types";
 
+
+//get current profile
 export const getCurrentProfile=(hospital)=>async (dispatch,) =>{
     const api=hospital ===true ? 'hospitals':'profile'
     try {
@@ -19,6 +22,45 @@ export const getCurrentProfile=(hospital)=>async (dispatch,) =>{
     }
 }
 
+// get all user profile
+export const getAllProfiles=(hospital)=>async (dispatch,) =>{
+    dispatch({type:CLEAR_PROFILE})
+
+    const api=hospital ===true ? 'hospitals':'profile'
+    try {
+        const res=await axios.get(`/api/${api}/`);
+     
+        dispatch({
+            type:GET_PROFILES,
+            payload:res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+          });
+    }
+}
+
+
+export const getAllProfilebyID=(userID,hospital)=>async (dispatch,) =>{
+    dispatch({type:CLEAR_PROFILE})
+
+    const api=hospital ===true ? 'hospitals':'profile'
+    try {
+        const res=await axios.get(`/api/${api}/user/${userID}`);
+     
+        dispatch({
+            type:GET_PROFILES,
+            payload:res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+          });
+    }
+}
 
 
 
@@ -32,17 +74,18 @@ try {
         }
     }
 
-    const data ={...formdata}
-    const A_B_C=data.A_B_C
-    const location=data.location
+    const {name,A_B_C,location,password}={...formdata}
+    
 
     const send=JSON.stringify({A_B_C,location})
+    const send2=JSON.stringify({name,password})
 
 
 
     const path=Hospital ===true ? 'hospitals':'profile'
     
     const res=await axios.post(`/api/${path}`,send,config)
+    const res2=await axios.post('api/users/edit',send2,config)
     
     dispatch({
         type:GET_PROFILE,
@@ -50,10 +93,11 @@ try {
     });
 
     dispatch(setAlert( 'profile updated'))
+    dispatch(loadUser())
 
-    // if(!edit){
-    //     navigate('/dashboard');
-    // }
+   
+        navigate('/dashboard');
+    
 
 } catch (err) {
 
@@ -131,4 +175,35 @@ export const updateProfile =(formdata,navigate,Hospital=null)=>async dispatch=>{
               
     }
 
+}
+
+
+
+// delete account
+
+export const DeleteAccount =(id,Hospital)=>async dispatch =>{
+
+    if(window.confirm('Are you sure? Do you want to Delete your Account Permanently?...')){
+
+        try {
+
+            const path=Hospital ? 'hospitals/' :'profile'
+            const res =await axios.delete(`/api/${path}`)
+    
+              
+            dispatch({type:CLEAR_PROFILE });
+    
+            dispatch({type:DELETE_ACCCOUNT})
+
+            dispatch(setAlert('Account Deleted'))
+        } catch (err) {
+            dispatch({
+        
+                
+                type: PROFILE_ERROR,
+                payload: { msg: err.response.statusText, status: err.response.status }
+              });
+            
+        }
+    }
 }

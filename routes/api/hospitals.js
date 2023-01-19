@@ -2,6 +2,7 @@ const express =require('express');
 const auth=require('../../middleware/auth');
 const {check,validationResult}=require('express-validator');
 const Hospitals =require('../../models/Hospitals');
+const Requests=require('../../models/Request')
 const router=express.Router();
 const User=require('../../models/Users')
 const { json } = require('express');
@@ -108,7 +109,7 @@ router.get('/',async (req,res)=>{
 //@acess  private
  
 
-router.get('/account/:user_id',async (req,res)=>{
+router.get('/user/:user_id',async (req,res)=>{
 
     try {
     const hospital= await Hospitals.findOne({user:req.params.user_id}).populate('user',['name','avatar'])
@@ -137,6 +138,9 @@ router.get('/account/:user_id',async (req,res)=>{
 router.delete('/',auth,async (req,res)=>{
 
     try {
+
+    // delete requests
+    await Requests.deleteMany({user:req.user.id})
 
     // remove profile 
     await Hospitals.findOneAndRemove({user:req.user.id})

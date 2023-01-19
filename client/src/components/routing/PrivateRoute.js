@@ -11,7 +11,7 @@ const PrivateRoute = ({
  // if (loading) return <Spinner />;
   if (isAuthenticated) return <Component />;
 
-  return <Navigate to="/Login" />;
+ // return <Navigate to="/Login" />;
 };
 
 PrivateRoute.propTypes = {
