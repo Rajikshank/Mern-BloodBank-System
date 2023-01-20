@@ -7,10 +7,22 @@ import {
 
 
 
-export const getPosts=()=> async dispatch =>{
+export const getPosts=(Hospital)=> async dispatch =>{
     try {
-        
-    } catch (error) {
-        
+        const path=Hospital ? 'all':''
+
+        const res=await axios.get(`/api/post/${path}`)
+
+        dispatch({
+            type:GET_POSTS,
+            payload:res.data
+        })
+
+    } catch (err) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+          });
+
     }
 }

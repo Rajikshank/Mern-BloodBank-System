@@ -31,6 +31,7 @@ const newPost=new Post({
     text:req.body.text,
     name:user.name,
     avatar:user.avatar,
+    date:req.body.date
 });
 
  await newPost.save();

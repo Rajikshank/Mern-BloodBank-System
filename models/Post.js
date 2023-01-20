@@ -31,6 +31,11 @@ const PostSchema=new Schema({
     Aprovel:{
         type:Boolean,
         default:true
+    },
+    
+    Date:{
+        type:Date,
+        default:Date.now
     }
 
 })

@@ -9,10 +9,10 @@ export const Action = () => {
             Edit Profile
         </Link>
 
-        <Link to="/Update-profile" className='btn btn-light'>
+        <Link to="/Requests" className='btn btn-light'>
              
             <i class="fa-solid fa-arrow-rotate-right text-primary"></i>{' '}
-            Update 
+            View Requests 
         </Link>
     
 

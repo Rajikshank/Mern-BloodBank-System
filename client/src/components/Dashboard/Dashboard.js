@@ -7,6 +7,7 @@ import Loading from '../Loading'
 import { Action } from './Action';
 import Cardview from './Card';
 import { Row } from 'antd';
+import Posts from '../post/Posts';
 const Dashboard = ({getCurrentProfile,auth:{user,Donor},profile:{profile,loading}}) => {
 
 useEffect(()=>{
@@ -23,7 +24,7 @@ useEffect(()=>{
 
  
   return  loading && profile ===null ? <Loading/> :<Fragment>
-    <h1 className='large text-primary'>Posts</h1>
+    <h1 className='large text-primary'>Dashboard</h1>
     <p className='lead'>
       <i className='fas fa-user'></i> Hey!! {user &&user.name}
     </p>
@@ -36,7 +37,7 @@ useEffect(()=>{
      
 
       </Row>
-      
+      <Posts/>
     </Fragment> :<Fragment> not available</Fragment>}
   </Fragment>
 }

@@ -23,7 +23,7 @@ const authlinks=(
       <Link   to='/dashboard'>
       <i class="fas fa-stream"></i>{' '}
  
-       Posts</Link>
+       Dashboard</Link>
     </li>
 
     <li>
