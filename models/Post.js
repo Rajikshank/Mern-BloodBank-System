@@ -25,6 +25,9 @@ const PostSchema=new Schema({
         },
         avatar:{
             type:String 
+        },
+        name:{
+            type:String 
         }
     }
     ],

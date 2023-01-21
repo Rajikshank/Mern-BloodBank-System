@@ -59,9 +59,9 @@ router.put('/all/approve/:id',auth, async(req,res)=>{
     try {
         const post =await Post.findById(req.params.id);// getting the post 
         const user = await User.findById(req.user.id); // getting the user for check its a hospital account or not 
-
+     
         if(user.Hospital){
-            post.Aprovel= req.body.Approvel;
+            post.Aprovel= !post.Aprovel;
             await post.save();
             return res.json({msg:'Post '+ (req.body.Approvel===true ? 'Approved' : 'Not Approved')})
         }
@@ -186,7 +186,7 @@ router.put('/participants/:id',auth,async(req,res)=>{
         }
         
         const user= await User.findById(req.user.id);
-        const user_object={user:req.user.id, avatar:user.avatar};
+        const user_object={user:req.user.id, avatar:user.avatar,name:user.name};
        // console.log(user)
         post.participants.unshift(user_object);
 

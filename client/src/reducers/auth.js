@@ -17,7 +17,8 @@ case USER_LOADED:
         ...state,
         isAuthenticated:true,
         user:payload,
-        Donor:true 
+        Donor:true,
+        loading:false 
     }    
 
 case USER_LOADED_HOS:

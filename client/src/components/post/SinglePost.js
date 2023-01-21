@@ -1,23 +1,26 @@
 import React,{Fragment} from 'react'
 import PropTypes from 'prop-types'
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 import Moment from 'react-moment'
 import {connect} from 'react-redux'
+import { deletepost} from '../../actions/post'
+import { addParticipants,removeParticipants,approvepost } from '../../actions/post'
  
 
-
-const SinglePost = ({auth,post:{_id,user,text,name,avatar,participants,Date,Aprovel}}) => {
+const SinglePost = ({auth,post:{_id,user,text,name,avatar,participants,Date,Aprovel},deletepost,addParticipants,approvepost,postview}) => {
+  const navigate=useNavigate();
+ 
   return (
     <div class="post bg-white p-1 my-1">
           <div>
-            <a href="profile.html">
+            <Link to={`/profile/${user}`}>
               <img
                 class="round-img"
                 src={avatar}
                 alt=""
               />
               <h4>{name}</h4>
-            </a>
+            </Link>
           </div>
           <div>
             <p class="my-1">
@@ -27,38 +30,64 @@ const SinglePost = ({auth,post:{_id,user,text,name,avatar,participants,Date,Apro
              <p class="post-date">
                 Posted on {<Moment format='YYYY/MM/DD'>{Date}</Moment>}
             </p>
-            <button type="button" class="btn btn-light">
+
+
+            { !postview &&
+            <>  
+            <Link type="button" class="btn btn-light">
             <i class="fa fa-people-group"></i> Participants {': '}
               <span>{participants.length}</span>
-            </button>
-
+            </Link>
             
-            {!auth.user.Hospital && <Link class="btn btn-primary">
-              Participate  
+             
+            
+            {!auth.user.Hospital && <Link to={`/Post/${_id}`}  class="btn btn-success">
+              View Post  
             </Link> }
+            </>
+            }
             
 
-            {auth.user.Hospital && Aprovel===false &&  <Link href="post.html" class="btn btn-success" onClick={console.log('clicked')}>
-              Approve <span class='comment-count'>2</span>
-            </Link>}
+            {postview &&  <button class="btn btn-success" onClick={e=>addParticipants(_id)} > Participate</button>}
+
+              
+
+
+
+            {auth.user.Hospital && Aprovel===false &&  <button   className="btn btn-success" onClick={e=>approvepost(_id,navigate)}>
+              Approve  
+            </button>}
             
-            {!auth.loading && user=== auth.user._id && <button      
-            type="button"
-            class="btn btn-danger">
-            <i class="fas fa-times"></i>
-          </button>}
+            {console.log('loading',auth.loading)}
+            {!auth.loading && user === auth.user._id  &&(
+              
+            <button
+              onClick={ (e)=>deletepost(_id)}
+              type="button"
+              className="btn btn-danger"
+            >
+              delete {' '}
+              <i className="fas fa-times" />
+            </button>)}
             
           </div>
           </div>
   )
 }
+SinglePost.defaultProps={
+  postview:false
+}
 
 SinglePost.propTypes = {
     post:PropTypes.object.isRequired,
-    auth:PropTypes.object.isRequired
+    auth:PropTypes.object.isRequired,
+    deletepost:PropTypes.func.isRequired,
+    addParticipants:PropTypes.func.isRequired,
+    approvepost:PropTypes.func.isRequired
 }
 
 const mapStateToProps=state=>({
-    auth:state.auth
+    auth:state.auth,
+   
 })
-export default connect(mapStateToProps,{})(SinglePost)
+export default connect(mapStateToProps,{deletepost,addParticipants,approvepost})(SinglePost)

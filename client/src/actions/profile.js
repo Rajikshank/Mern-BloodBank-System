@@ -68,13 +68,16 @@ export const getAllProfilebyID=(userID,hospital)=>async (dispatch,) =>{
 export const EditProfile=(formdata,navigate,Hospital=null)=>async dispatch=>{
 
 try {
+
+    if(Hospital)
+{
     const config ={
         headers:{
             'Content-Type':'application/json'
         }
     }
 
-    const {name,A_B_C,location,password}={...formdata}
+    const {name,A_B_C,location,password}=formdata
     
 
     const send=JSON.stringify({A_B_C,location})
@@ -82,9 +85,9 @@ try {
 
 
 
-    const path=Hospital ===true ? 'hospitals':'profile'
+     
     
-    const res=await axios.post(`/api/${path}`,send,config)
+    const res=await axios.post(`/api/hospitals`,send,config)
     const res2=await axios.post('api/users/edit',send2,config)
     
     dispatch({
@@ -96,7 +99,41 @@ try {
     dispatch(loadUser())
 
    
-        navigate('/dashboard');
+        navigate('/dashboard');}
+
+    else if (Hospital===false)
+    
+    {
+        const config ={
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }
+    
+        const {name,sex,bloodgroup,location,covid,password}=formdata
+        
+    
+        const send=JSON.stringify({sex,bloodgroup,location,covid })
+        const send2=JSON.stringify({name,password})
+    
+    
+    
+        
+        
+        const res=await axios.post(`/api/profile`,send,config)
+        const res2=await axios.post('api/users/edit',send2,config)
+        
+        dispatch({
+            type:GET_PROFILE,
+            payload:res.data
+        });
+    
+        dispatch(setAlert( 'profile updated'))
+        dispatch(loadUser())
+    
+       
+            navigate('/dashboard');
+    }
     
 
 } catch (err) {

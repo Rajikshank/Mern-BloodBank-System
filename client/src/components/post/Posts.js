@@ -5,14 +5,20 @@ import { getPosts } from '../../actions/post'
 import Loading from '../Loading'
 import { Divider } from 'antd'
 import SinglePost from './SinglePost'
+import Createpost from './Createpost'
+ 
+
 
 const Posts = ({getPosts,post:{posts,loading},auth:{user}}) => {
+  
+
     useEffect(()=>{
         getPosts(user.Hospital)
     },[getPosts])
 
     
   return loading ? <Loading/> :(<Fragment><Divider>Posts</Divider>
+  <Createpost/>
      <div className='posts'>
         {
             posts.map(post=>(
