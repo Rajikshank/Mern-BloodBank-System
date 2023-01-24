@@ -20,6 +20,14 @@ const authlinks=(
     </li>
 
     <li>
+      <Link   to='/Donors'>
+      <i class="fa-solid fa-users"></i>{' '}
+ 
+       Donors</Link>
+    </li>
+
+
+    <li>
       <Link   to='/dashboard'>
       <i class="fas fa-stream"></i>{' '}
  

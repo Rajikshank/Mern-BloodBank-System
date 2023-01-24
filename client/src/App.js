@@ -18,6 +18,8 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import EditProfile from './components/EditProfile';
 import Hospitals from './components/Dashboard/Hospitals';
 import Postview from './components/post/Postview';
+import EditProfile2 from './components/EditProfile2';
+import Donors from './components/Dashboard/Donors';
 
 
 if(localStorage.token){
@@ -50,8 +52,10 @@ function App() {
     <Route path='/login' element={<Login/>}/>
     <Route path="/Dashboard" element={<PrivateRoute component={Dashboard} />} />
     <Route path="/Hospitals" element={<PrivateRoute component={Hospitals} />} />
+    <Route path="/Donors" element={<PrivateRoute component={Donors} />} />
     <Route path="/Post/:id" element={<PrivateRoute component={Postview} />} />
-    <Route path="/edit-profile" element={<PrivateRoute component={EditProfile} />} />
+    <Route path="/edit-hospital" element={<PrivateRoute component={EditProfile} />} />
+    <Route path="/edit-donor" element={<PrivateRoute component={EditProfile2} />} />
     </Routes>
 
       </section>

@@ -5,7 +5,8 @@ import { getCurrentProfile } from '../../actions/profile';
 import { getCurrentHospital } from '../../actions/Hospitals';
 import Loading from '../Loading'
 import { Action } from './Action';
-import Cardview from './Card';
+import ABCCard from './ABCCard';
+import NBGCard from './NBGCard';
 import { Row } from 'antd';
 import Posts from '../post/Posts';
 const Dashboard = ({getCurrentProfile,auth:{user,Donor},profile:{profile,loading}}) => {
@@ -30,10 +31,10 @@ useEffect(()=>{
     </p>
     {profile!==null ? 
     <Fragment>
-      <Action/>
+      <Action Hospital={user.Hospital}/>
       <Row  justify={'start'} gutter={[60,60]}>
-      <Cardview classname='fas fa-user' name='Available Blood Packages' value={profile.A_B_C}/>
-      <Cardview classname='fas fa-hand-holding-heart' name="Needed Blood Group" value={"A+,B,AB+"}/>
+      <ABCCard classname='fas fa-user' name='Available Blood Packages' value={profile.A_B_C} />
+      <NBGCard classname='fas fa-hand-holding-heart' name="Needed Blood Group" value={new Set(profile.N_B_G)}/>
      
 
       </Row>

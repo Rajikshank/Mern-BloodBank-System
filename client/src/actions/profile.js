@@ -99,7 +99,8 @@ try {
     dispatch(loadUser())
 
    
-        navigate('/dashboard');}
+        navigate('/dashboard');
+    }
 
     else if (Hospital===false)
     
@@ -158,9 +159,9 @@ try {
 }
 
 
-//update profile
+//update Available blood package count
 
-export const updateProfile =(formdata,navigate,Hospital=null)=>async dispatch=>{
+export const update_ABC =(value)=>async dispatch=>{
 
     try {
         const config ={
@@ -169,17 +170,68 @@ export const updateProfile =(formdata,navigate,Hospital=null)=>async dispatch=>{
             }
         }
     
-        const data ={...formdata}
-        const A_B_C=data.A_B_C
-        const location=data.location
-    
-        const send=JSON.stringify({A_B_C,location})
-    
-    
-    
-        const path=Hospital ===true ? 'hospitals/nbg':'profile/bloodgroup'
+        const A_B_C=value;
+        const send=JSON.stringify({A_B_C})
         
-        const res=await axios.put(`/api/${path}`,send,config)
+       
+    
+        
+        
+        const res=await axios.put(`/api/hospitals/abc`,send,config)
+         
+        dispatch({
+            type:UPDATE_PROFILE,
+            payload:res.data
+        });
+    
+        dispatch(setAlert( 'Value updated','success'))
+    
+        // if(!edit){
+        //     navigate('/dashboard');
+        // }
+    
+    } catch (err) {
+    
+        console.log(err)
+        const errors=err.response.data.errors ;
+        if(errors){
+            errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+                
+            );
+        }
+    
+         dispatch({
+    
+            
+                type: PROFILE_ERROR,
+                payload: { msg: err.response.statusText, status: err.response.status }
+              });
+    
+              
+    }
+
+}
+
+
+
+
+export const update_NBG =(value)=>async dispatch=>{
+
+    try {
+        const config ={
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }
+    
+        const N_B_G=value;
+        const send=JSON.stringify({N_B_G})
+        
+       
+    
+        
+        
+        const res=await axios.put(`/api/hospitals/nbg`,send,config)
          
         dispatch({
             type:UPDATE_PROFILE,

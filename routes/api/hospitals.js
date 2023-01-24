@@ -164,9 +164,9 @@ router.delete('/',auth,async (req,res)=>{
 
     router.put('/abc',auth,async (req,res)=>{
 
-    
+        
         const A_B_C=req.body.A_B_C;
-     
+        console.log(A_B_C)
     
     try {
         

@@ -10,7 +10,7 @@ const SingleHospitalProfile = ({profile:{user:{_id,name,avatar},location,A_B_C,N
        <div>
         <h2>{name}</h2>
         <p>Available Blood Packages : {' '} {A_B_C}</p>
-        <p className='my-1'>Needed Blood Group :{' '} {N_B_G}</p>
+        {Array.isArray(N_B_G) && <p className='my-1'>Needed Blood Group :{' '} {N_B_G.join()}</p>}
         <p>Location : {' '}{location}</p>
        </div>
     </div>
