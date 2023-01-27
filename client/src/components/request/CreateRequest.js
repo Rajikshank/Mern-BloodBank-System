@@ -1,17 +1,18 @@
 import React,{useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { addpost } from '../../actions/post'
+import { addrequest } from '../../actions/request'
 
 
-const Createpost = ({addpost,auth}) => {
+const CreateRequest = ({addrequest,auth}) => {
     const [text,setText]=useState('')
 
   return   <><div class="bg-primary p">
       <h3>Say Something...</h3>
   </div><form class="form my-1" onSubmit={e=>{
     e.preventDefault();
-    addpost({'text':text,'Aprovel':auth.user.Hospital});
+    addrequest({'text':text});
+    console.log(text)
     setText('')
   }}>
           <textarea
@@ -28,8 +29,8 @@ const Createpost = ({addpost,auth}) => {
  
 }
 
-Createpost.propTypes = {
-    addpost:PropTypes.func.isRequired,
+CreateRequest.propTypes = {
+    addrequest:PropTypes.func.isRequired,
     auth:PropTypes.object.isRequired,
 }
 
@@ -38,4 +39,4 @@ const mapStateToProps=state=>({
     auth:state.auth,
      
 })
-export default connect (mapStateToProps,{addpost})(Createpost)
+export default connect (mapStateToProps,{addrequest})(CreateRequest)

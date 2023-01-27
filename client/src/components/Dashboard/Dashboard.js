@@ -16,7 +16,7 @@ useEffect(()=>{
  if(user!==null)
     {getCurrentProfile(user.Hospital);}
  
-  
+ 
    
 },[user]); 
 

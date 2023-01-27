@@ -11,12 +11,12 @@ export const Action = (props) => {
             Edit Profile
         </Link>
 
-        <Link to="/Requests" className='btn btn-light'>
+       { props.Hospital ===true && <Link to="/Requests" className='btn btn-light'>
              
             <i class="fa-solid fa-arrow-rotate-right text-primary"></i>{' '}
             View Requests 
         </Link>
-    
+    }
 
     </div>
   )

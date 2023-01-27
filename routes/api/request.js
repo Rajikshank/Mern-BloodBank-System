@@ -123,7 +123,7 @@ router.delete('/:id',auth,async (req,res)=>{
 //@desc   add accepted hospitals  for  the request
 //@access  private
 
-router.put('/request/Accept/:id',auth,async(req,res)=>{
+router.put('/Accept/:id',auth,async(req,res)=>{
 
     try {
         
@@ -134,7 +134,7 @@ router.put('/request/Accept/:id',auth,async(req,res)=>{
         }
         
         const user= await User.findById(req.user.id);
-        const user_object={user:req.user.id, avatar:user.avatar};
+        const user_object={user:req.user.id, avatar:user.avatar,name :user.name};
        // console.log(user)
        request.Accept.unshift(user_object);
 
@@ -158,7 +158,7 @@ router.put('/request/Accept/:id',auth,async(req,res)=>{
 //@desc   remove Accept for  the post
 //@access  private
 
-router.put('/request/rm-Accept/:id',auth,async(req,res)=>{
+router.put('/rm-Accept/:id',auth,async(req,res)=>{
 
     try {
         

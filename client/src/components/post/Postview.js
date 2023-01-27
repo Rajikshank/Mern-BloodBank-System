@@ -12,7 +12,7 @@ const Postview = ({getPost,post:{post,loading}}) => {
 
 useEffect(()=>{
     getPost(id);
-},[getPost],post);
+},[getPost,post]);
  
  
   return loading || post===null ? <Loading/> :

@@ -323,7 +323,7 @@ button {
 }
 
 .navbar a:hover {
-  color: var(--primary-color);
+  color: var(--dark-color);
 }
 
 .navbar .welcome span {
