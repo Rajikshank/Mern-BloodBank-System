@@ -2,29 +2,36 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Avatar, List } from 'antd';
 
-
-const Participant = ({auth,postId,Participant:{name,avatar}}) => {
+const Participant = (props) => {
   return (
-    <div class="post bg-white p-1 my-1">
-          <div>
-            <a href="profile.html">
-              <img
-                class="round-img"
-                src={avatar}
-                alt=""
-              />
-              <h4>{name}</h4>
-            </a>
-          </div>
-          </div>
+    <>
+  
+
+
+
+<List
+itemLayout="horizontal"
+dataSource={props.Participant}
+renderItem={(item) => (
+  <List.Item>
+    <List.Item.Meta
+      avatar={<Avatar src={item.avatar} />}
+      title={item.name}
+      description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+    />
+  </List.Item>
+)}
+/>
+         </> 
   )
 }
 
 Participant.propTypes = {
-    postId:PropTypes.string.isRequired,
-    Participant:PropTypes.object.isRequired,
-    auth:PropTypes.object.isRequired
+  
+    Participant:PropTypes.array.isRequired,
+     
 }
 
 

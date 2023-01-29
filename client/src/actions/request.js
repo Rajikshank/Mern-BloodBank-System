@@ -101,6 +101,8 @@ export const addAccept=(id)=> async dispatch =>{
             payload:res.data 
         })
 
+        dispatch(setAlert('Request Accepted...', 'success'));
+
     } catch (err) {
         dispatch({
             type: POST_ERROR,
@@ -125,7 +127,7 @@ export const removeAccept=(id)=> async (dispatch) =>{
             payload:res.data
         })
 
-        dispatch(setAlert('Request Rejected...', 'success'));
+        dispatch(setAlert('Request Rejected...', 'error'));
 
     } catch (err) {
         dispatch({
@@ -148,7 +150,7 @@ export const deleterequest = (id) => async (dispatch) => {
         payload: id
       });
   
-      dispatch(setAlert('Request Removed', 'success'));
+      dispatch(setAlert('Request Removed', 'error'));
     } catch (err) {
       dispatch({
         type: POST_ERROR,

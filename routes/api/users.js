@@ -34,7 +34,7 @@ async (req,res)=>{
    try {
 
 //seek for the user details
-let user = await User.findOne({email})
+let user = await User.findOne({$or:[{email},{name}]})
 
 if(user){
  return res.status(400).json({errors:[{msg:'User already exits'}]})
@@ -86,7 +86,7 @@ const payload={
 
 
 //@route  POST api/users
-//@desc   Register user
+//@desc   edit user
 //@access  Public 
 router.post('/edit',
 // validating input from user

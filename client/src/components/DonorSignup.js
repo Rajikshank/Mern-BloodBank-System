@@ -21,7 +21,7 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
   });
 
   const {name,email,bloodgroup,city,password,password2}=formData;
-  const onChange=e=>setFormdata({...formData,[e.target.name]:e.target.value})
+  const onChange=e=>setFormdata({...formData,[e.target.name]:e.target.value}) ;
   
   const onSubmit=async e=>{
     e.preventDefault();
@@ -34,7 +34,7 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
     else{
       console.log('success')
       console.log(formData)
-      authdonor({name,email,password,bloodgroup,city});
+      authdonor(formData);
     }
     
   }
@@ -70,9 +70,9 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
         <div className="form-group" >
         please Select your Gender :
         <br/>
-        <input type="radio" value="MALE" defaultChecked name="sex" onChange={e=>onChange(e)}/> Male
+        <input type="radio" value="MALE"  name="sex" onChange={e=>setFormdata({...formData,sex:'Male'})}/> Male
         <br/>
-        <input type="radio" value="FEMALE" name="sex" onChange={e=>onChange(e)}/> Female
+        <input type="radio" value="FEMALE" name="sex" onChange={e=>setFormdata({...formData,sex:'Female'})}/> Female
       </div>
 
         

@@ -17,6 +17,20 @@ export const Action = (props) => {
             View Requests 
         </Link>
     }
+       { props.Hospital ===false && <Link to="/history" className='btn btn-light'>
+             
+             <i class="fa-solid fa-arrow-rotate-right text-primary"></i>{' '}
+             View Donation History 
+         </Link>
+     }
+ 
+
+    { props.Hospital ===true && <Link to="/add-history" className='btn btn-light'>
+             
+             <i class="fa-solid fa-arrow-rotate-right text-primary"></i>{' '}
+             Add Blood Donation Entry 
+         </Link>
+     }
 
     </div>
   )

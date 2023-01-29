@@ -196,5 +196,55 @@ try {
 
 
 
+
+//@route  PUT api/profile/history/:id
+//@desc   add donation history
+//@access  private
+
+router.put('/history/',auth,async(req,res)=>{
+
+    try {
+        
+
+        const donor=await User.findOne({name:req.body.ID})
+     
+        if(!donor){
+            return res.status(400).json({msg:'No profile Found'})
+        }
+        
+
+        const profile=await Profile.findOne({user:donor._id});
+         
+        if(!profile){
+            return res.status(400).json({msg:'No profile Found'})
+        }
+
+     
+
+        const user= await User.findById(req.user.id);
+
+        
+        if(!user.Hospital){
+           return  res.json({msg:'Access denied'});
+        }
+        
+
+        const History={ location:req.body.location ,Hospital:user.name,Date:req.body.Date,Time:req.body.Time};
+       // console.log(user)
+        profile.Donationhistory.unshift(History);
+
+        await profile.save();
+
+        res.json(profile.Donationhistory);
+
+    } catch (err) {
+        
+    console.error(err.message)
+     res.status(500).send("Server Error")
+    }
+
+})
+
+
     
 module.exports=router

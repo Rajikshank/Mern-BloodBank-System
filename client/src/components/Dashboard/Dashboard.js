@@ -24,7 +24,7 @@ useEffect(()=>{
  //console.log('hospital',user.Hospital)
 
  
-  return  loading && profile ===null ? <Loading/> :<Fragment>
+  return  loading && profile ===null && user ===null ? <Loading/> :<Fragment>
     <h1 className='large text-primary'>Dashboard</h1>
     <p className='lead'>
       <i className='fas fa-user'></i> Hey!! {user &&user.name}
@@ -33,8 +33,8 @@ useEffect(()=>{
     <Fragment>
       <Action Hospital={user.Hospital}/>
       <Row  justify={'start'} gutter={[60,60]}>
-      <ABCCard classname='fas fa-user' name='Available Blood Packages' value={profile.A_B_C} />
-      <NBGCard classname='fas fa-hand-holding-heart' name="Needed Blood Group" value={new Set(profile.N_B_G)}/>
+      {user.Hospital && <ABCCard classname='fas fa-user' name='Available Blood Packages' value={profile.A_B_C} />}
+      {user.Hospital && <NBGCard classname='fas fa-hand-holding-heart' name="Needed Blood Group" value={[...new Set(profile.N_B_G)].join()}/>}
      
 
       </Row>

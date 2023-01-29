@@ -1,4 +1,4 @@
-import React,{Fragment,useEffect} from 'react'
+import React,{Fragment,useEffect,useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Loading from '../Loading'
@@ -10,13 +10,14 @@ import { getRequests } from '../../actions/request'
 
 
 const Requests = ({getRequests,request:{requests,loading,request},auth:{user}}) => {
-  
+    
 
     useEffect(()=>{
         getRequests()
-    },[getRequests,request,requests])
+  
+    },[getRequests,request])
 
-    
+     
   return loading ? <Loading/> :(<Fragment>
       <h1 className='large text-primary'>Requests</h1>
   <CreateRequest/>
@@ -24,7 +25,7 @@ const Requests = ({getRequests,request:{requests,loading,request},auth:{user}}) 
      <div className='posts'>
         {
             requests.map(request=>(
-                <SinglePost key={request._id} request={request}/>
+                <SinglePost key={request._id} request={request}  />
             ))
         }
      </div>

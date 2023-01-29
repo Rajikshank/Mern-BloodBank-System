@@ -11,7 +11,7 @@ const SinglePost = ({auth,post:{_id,user,text,name,avatar,participants,Date,Apro
   const navigate=useNavigate();
  
   return (
-    <div class="post bg-white p-1 my-1">
+    <div class="post bg-timeline p-1 my-1">
           <div>
             <Link to={`/profile/${user}`}>
               <img

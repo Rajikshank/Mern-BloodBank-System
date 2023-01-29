@@ -95,7 +95,7 @@ try {
         payload:res.data
     });
 
-    dispatch(setAlert( 'profile updated'))
+    dispatch(setAlert( 'profile updated','success'))
     dispatch(loadUser())
 
    
@@ -129,7 +129,7 @@ try {
             payload:res.data
         });
     
-        dispatch(setAlert( 'profile updated'))
+        dispatch(setAlert( 'profile updated','success'))
         dispatch(loadUser())
     
        
@@ -142,7 +142,7 @@ try {
     console.log(err)
     const errors=err.response.data.errors ;
     if(errors){
-        errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+        errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
             
         );
     }
@@ -195,7 +195,7 @@ export const update_ABC =(value)=>async dispatch=>{
         console.log(err)
         const errors=err.response.data.errors ;
         if(errors){
-            errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+            errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
                 
             );
         }
@@ -238,7 +238,7 @@ export const update_NBG =(value)=>async dispatch=>{
             payload:res.data
         });
     
-        dispatch(setAlert( 'Profile updated'))
+        dispatch(setAlert( 'Profile updated','success'))
     
         // if(!edit){
         //     navigate('/dashboard');
@@ -249,7 +249,7 @@ export const update_NBG =(value)=>async dispatch=>{
         console.log(err)
         const errors=err.response.data.errors ;
         if(errors){
-            errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+            errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
                 
             );
         }
@@ -265,6 +265,68 @@ export const update_NBG =(value)=>async dispatch=>{
     }
 
 }
+
+// add donation history 
+
+export const update_History =({ID,location,Date,Time})=>async dispatch=>{
+
+    try {
+        const config ={
+            headers:{
+                'Content-Type':'application/json'
+            }
+        }
+    
+       
+        const send=JSON.stringify({ID,location,Date,Time})
+        
+       
+    
+        
+        
+        const res=await axios.put(`/api/profile/history/`,send,config)
+         
+        dispatch({
+            type:UPDATE_PROFILE,
+            payload:res.data
+        });
+    
+        dispatch(setAlert( 'History updated','success'))
+    
+        
+    
+    } catch (err) {
+        dispatch(setAlert(err.response.data.msg,'error'))
+        
+       dispatch( console.log(err))
+
+
+        const errors=err.response.data.errors ;
+        if(errors){
+            errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
+                
+            );
+        }
+    
+         dispatch({
+    
+            
+                type: PROFILE_ERROR,
+                payload: { msg: err.response.statusText, status: err.response.status }
+              });
+    
+              
+    }
+
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -284,7 +346,7 @@ export const DeleteAccount =(id,Hospital)=>async dispatch =>{
     
             dispatch({type:DELETE_ACCCOUNT})
 
-            dispatch(setAlert('Account Deleted'))
+            dispatch(setAlert('Account Deleted','success'))
         } catch (err) {
             dispatch({
         

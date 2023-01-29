@@ -3,6 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
  import { LoginUser } from '../actions/authdonor';
+ import { Input } from 'antd';
 
 const Login = ({ LoginUser, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const Login = ({ LoginUser, isAuthenticated }) => {
       </p>
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
-          <input
+          <Input
             type="email"
             placeholder="Email Address"
             name="email"
@@ -41,7 +42,7 @@ const Login = ({ LoginUser, isAuthenticated }) => {
           />
         </div>
         <div className="form-group">
-          <input
+          <Input
             type="password"
             placeholder="Password"
             name="password"
@@ -50,7 +51,7 @@ const Login = ({ LoginUser, isAuthenticated }) => {
             minLength="6"
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <input type="submit" className="button-9" value="Login" />
       </form>
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>

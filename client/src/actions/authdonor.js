@@ -24,7 +24,7 @@ export const loadUser=()=>async dispatch=>{
      }
 }
 
-export const authdonor=({name,email,password,bloodgroup,city})=>async dispatch=>{
+export const authdonor=({name,email,password,sex,bloodgroup,city})=>async dispatch=>{
     const config ={
         headers:{
             'Content-Type':'application/json'
@@ -42,7 +42,7 @@ export const authdonor=({name,email,password,bloodgroup,city})=>async dispatch=>
  
      console.log(bloodgroup,city)
      const location=city
-     const body2=JSON.stringify({bloodgroup,location})
+     const body2=JSON.stringify({sex,bloodgroup,location})
 
     try {
         
@@ -59,10 +59,11 @@ export const authdonor=({name,email,password,bloodgroup,city})=>async dispatch=>
 
         dispatch(loadUser())
     } catch (err) {
-        console.log(err)
+        dispatch (setAlert(err.response.data.errors[0].msg,'error'))
+       dispatch( console.log(err))
         const errors=err.response.data;
         if(errors){
-            errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+            errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
                 
             );
         }
@@ -107,7 +108,7 @@ export const LoginUser=(email,password)=>async dispatch=>{
         const errors=err.response.data;
         console.log(errors)
         if(errors){
-            errors.errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+            errors.errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
                 
             );
         }

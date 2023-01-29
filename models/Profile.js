@@ -24,10 +24,25 @@ const ProfileModel=new mongoose.Schema({
     default:false
     },
 
-    prevDonationDate:{
-        type:Date,
-        default:Date.now
+    Donationhistory:[
+      {Date: { type:String ,
+                required:true 
+                },
+        location:{
+                    type:String,
+                    required:true 
+                },
+        Hospital:{
+                    type:String,
+                    required:true 
+                },
+
+        Time: { type:String ,
+                    required:false 
+                    },
+                
     }
+    ]
 
 })
 

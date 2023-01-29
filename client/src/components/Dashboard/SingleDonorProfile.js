@@ -10,7 +10,7 @@ const SingleDonorProfile = ({profile:{user:{_id,name,avatar},location,sex,bloodg
        <div>
         <h2>{name}</h2>
         <p>Blood Group : {' '} {bloodgroup}</p>
-        <p className='my-1'>sex :{' '} {sex}</p>
+        <p className='my-1'>Sex :{sex}</p>
         <p>Location : {' '}{location}</p>
        </div>
     </div>

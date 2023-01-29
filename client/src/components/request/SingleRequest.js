@@ -1,4 +1,4 @@
-import React,{Fragment, useState} from 'react'
+import React,{Fragment, useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import {Link,useNavigate} from 'react-router-dom'
 import Moment from 'react-moment'
@@ -8,19 +8,13 @@ import { addParticipants,removeParticipants,approvepost } from '../../actions/po
 import { addAccept, deleterequest, removeAccept } from '../../actions/request'
  
 
-const SingleRequest = ({auth,request:{_id,user,text,name,avatar,Accept,Date},deleterequest,addAccept,removeAccept,requestview}) => {
+const SingleRequest = ({auth,request:{_id,user,text,name,avatar,Accept,Date},deleterequest,addAccept,removeAccept}) => {
   const [Aname,setAname]=useState('');
-  const [accept,setAccept]=useState(false)
-  const navigate=useNavigate();
-  console.log("hey")
-
-const onClick=()=>{
-  if(accept===true){
-    
-  }
-}
-
  
+   
+  
+
+  console.log()
   return (
     <div class="post bg-white p-1 my-1">
           <div>
@@ -42,14 +36,14 @@ const onClick=()=>{
                 Posted on {<Moment format='YYYY/MM/DD'>{Date}</Moment>}
             </p>
 
-            {Accept.length>0 && <p class="post-date">Accepted by : {name}</p>}
+            {  Accept.length>0 && <p class="post-date">Accepted by : {Accept[0].name}</p>}
  
             
             
 
-            {Accept.length <= 0 &&  <button class="btn btn-success" onClick={e=>addAccept(_id)} > Accept Request </button>}
+            {Accept.length<=0  && <button class="btn btn-success" onClick={e=>{addAccept(_id)}} > Accept Request </button>}
 
-            {Accept.length > 0 && Accept.filter(accept=>accept.user===auth.user._id).length>0 && <button class="btn btn-danger" onClick={e=>removeAccept(_id)} > Reject Request </button>}
+            { Accept.length>0 && Accept.filter(accept=>accept.user===auth.user._id).length>0 && <button class="btn btn-danger" onClick={e=>{removeAccept(_id) }} > Reject Request </button>}
             
 
 

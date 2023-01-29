@@ -22,7 +22,7 @@ useEffect(()=>{
 
 {post.participants.length>0 &&
 <div className='comments'>
-    {post.participants.map(participant=>(<Participant key={participant._id} Participant={participant} postId={post._id}/>))
+    {<Participant  Participant={post.participants} />
     
     }
 </div>}

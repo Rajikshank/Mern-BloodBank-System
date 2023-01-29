@@ -61,10 +61,11 @@ export const authHospital=({name,email,password,ABC,city})=>async dispatch=>{
 
         dispatch(loadUser())
     } catch (err) {
+        dispatch (setAlert(err.response.data.errors[0].msg,'error'))
         console.log(err)
         const errors=err.response.data;
         if(errors){
-            errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+            errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
                 
             );
         }
@@ -109,7 +110,7 @@ export const LoginUser=(email,password)=>async dispatch=>{
         const errors=err.response.data;
         console.log(errors)
         if(errors){
-            errors.errors.forEach(error =>dispatch (setAlert(error.msg,'danger'))
+            errors.errors.forEach(error =>dispatch (setAlert(error.msg,'error'))
                 
             );
         }
