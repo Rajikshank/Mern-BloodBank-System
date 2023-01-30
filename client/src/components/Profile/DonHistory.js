@@ -57,9 +57,10 @@ const DonHistory = ({auth:{user},profile:{profile,loading},getCurrentProfile}) =
       <img className="round-img my-1" src={user.avatar} alt="" />
       <h1 className="large">{user.name}</h1>
       <p className="lead">
-       
+       Contact No: {profile.phone}
       </p>
-      <p>{profile.location ? <span>{profile.location}</span> : null}</p>
+      <p className="lead">{profile.bloodgroup ? <span>Blood Group:{' '}{profile.bloodgroup}</span> : null}</p>
+      <p className="lead">{profile.location ? <span>{profile.location}</span> : null}</p>
 
       
       

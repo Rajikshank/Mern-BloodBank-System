@@ -6,8 +6,9 @@ const path =require('path')
 const app=express();
 
 //Connect DB
-
 connectDB();
+
+
 
 //Init Middleware
 app.use(express.json({extended:false}))
@@ -25,6 +26,7 @@ app.use('/api/hospitals',require('./routes/api/hospitals'))
 app.use('/api/post',require('./routes/api/post'))
 app.use('/api/request',require('./routes/api/request'))
  
+
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
     // Set static folder

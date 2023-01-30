@@ -24,7 +24,7 @@ export const loadUser=()=>async dispatch=>{
      }
 }
 
-export const authdonor=({name,email,password,sex,bloodgroup,city})=>async dispatch=>{
+export const authdonor=({name,email,password,sex,bloodgroup,city,phone})=>async dispatch=>{
     const config ={
         headers:{
             'Content-Type':'application/json'
@@ -42,7 +42,7 @@ export const authdonor=({name,email,password,sex,bloodgroup,city})=>async dispat
  
      console.log(bloodgroup,city)
      const location=city
-     const body2=JSON.stringify({sex,bloodgroup,location})
+     const body2=JSON.stringify({sex,bloodgroup,location,phone})
 
     try {
         

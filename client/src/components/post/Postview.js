@@ -7,18 +7,19 @@ import { Link, useParams } from 'react-router-dom'
 import SinglePost from './SinglePost'
 import Participant from './Participant'
 
-const Postview = ({getPost,post:{post,loading}}) => {
+const Postview = ({getPost,auth,post:{post,loading}}) => {
     const { id } = useParams();
 
 useEffect(()=>{
     getPost(id);
-},[getPost,post]);
+},[getPost]);
+
  
  
   return loading || post===null ? <Loading/> :
   <Fragment>
     <Link to={'/dashboard'} class="btn btn-light" >Back</Link>
-<SinglePost postview={true} post={post}/>
+<SinglePost postview={true} post={post} />
 
 {post.participants.length>0 &&
 <div className='comments'>
@@ -33,11 +34,13 @@ useEffect(()=>{
 
 Postview.propTypes = {
     getPost:PropTypes.func.isRequired,
-    post:PropTypes.object.isRequired
+    post:PropTypes.object.isRequired,
+    auth:PropTypes.object.isRequired
 }
 
 const mapStateToProps=state=>({
-    post :state.post
+    post :state.post,
+    auth:state.auth
 })
 
 export default connect (mapStateToProps,{getPost})(Postview)

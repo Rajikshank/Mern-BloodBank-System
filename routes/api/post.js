@@ -61,11 +61,30 @@ router.put('/all/approve/:id',auth, async(req,res)=>{
         const post =await Post.findById(req.params.id);// getting the post 
         const user = await User.findById(req.user.id); // getting the user for check its a hospital account or not 
      
-        if(user.Hospital){
+        if(user.email==='Admin@admin.com'){
             post.Aprovel= !post.Aprovel;
             await post.save();
+
+
+             //adding notification
+            //seek for the user details of the post owner
+            let post_owner = await User.findById(post.user)
+        
+             if(post_owner){
+             post_owner.notifications.unshift({msg :`$your post ${post.text} has been approved by the admin `})
+             
+             await post_owner.save();
+             console.log('notification added')
+            } 
+
+
+
+
             return res.json({msg:'Post '+ (req.body.Approvel===true ? 'Approved' : 'Not Approved')})
         }
+
+        
+
 
         
        res.json({msg:'Access denied'});
@@ -181,6 +200,11 @@ router.put('/participants/:id',auth,async(req,res)=>{
     try {
         
         const post=await Post.findById(req.params.id);
+        
+        if(!post){
+            return res.status(404).json({msg:'Post not found '})
+        }
+
 
         if(post.participants.filter(part=>part.user.toString()=== req.user.id).length>0){
             return res.status(400).json({msg:'Already joined as a participant'});
@@ -192,6 +216,22 @@ router.put('/participants/:id',auth,async(req,res)=>{
         post.participants.unshift(user_object);
 
         await post.save();
+        
+    
+        //adding notification
+        //seek for the user details of the post owner
+        let post_owner = await User.findById(post.user)
+        
+        if(post_owner){
+            post_owner.notifications.unshift({msg :`${user.name} is joined in your post ${post.text}  as a participant`})
+             
+             await post_owner.save();
+             console.log('notification added')
+        } 
+
+
+
+
 
         res.json(post.participants);
 

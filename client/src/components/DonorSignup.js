@@ -17,10 +17,11 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
     city:'',
     sex:'',
     password:'',
-    password2:''
+    password2:'',
+    phone:''
   });
 
-  const {name,email,bloodgroup,city,password,password2}=formData;
+  const {name,email,bloodgroup,city,password,password2,phone}=formData;
   const onChange=e=>setFormdata({...formData,[e.target.name]:e.target.value}) ;
   
   const onSubmit=async e=>{
@@ -55,6 +56,10 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
         </div>
         <div className="form-group">
           <input type="email" placeholder="Email Address" name="email"  value={email}   onChange={e=>onChange(e)} />
+           
+        </div>
+        <div className="form-group">
+          <input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
            
         </div>
 

@@ -16,6 +16,8 @@ router.get('/',auth,async(req,res)=>{
     try{
         const user=await User.findById(req.user.id).select('-password');
         res.json(user)
+        user.notifications=[]
+        await user.save()
     }
     catch(err){
         console.error(err.message);

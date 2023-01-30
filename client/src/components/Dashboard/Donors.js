@@ -17,7 +17,7 @@ import SingleDonorProfile from './SingleDonorProfile'
      <Fragment>{loading ? <Loading/> :<Fragment>
         <h1 className='large text-primary'>DONORS</h1>
         <p className='lead'>
-        <i class="fa-solid fa-hospital"></i> Currently available Blood Donors in our System
+        <i class="fa-solid fa-user"/> Currently available Blood Donors in our System
         </p>
         <div className='profiles'>
         {profiles.length>0 ? (

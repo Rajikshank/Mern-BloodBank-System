@@ -7,8 +7,10 @@ import {   Navigate, useMatch, useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { EditProfile } from '../actions/profile';
 import { getCurrentProfile } from '../actions/profile';
+import { Divider,FloatButton,Popover,Input } from 'antd'
+import { DeleteAccount } from '../actions/profile'
 
-export const EditDonorProfile= ({ auth:{user},profile:{profile,loading},EditProfile,getCurrentProfile})  => {
+export const EditDonorProfile= ({ auth:{user},profile:{profile,loading},EditProfile,getCurrentProfile,DeleteAccount})  => {
 
 var initialstate= {
     name:'',
@@ -16,6 +18,7 @@ var initialstate= {
     location:'',
     sex:'',
     password:'',
+    phone:''
   
   }
 
@@ -27,7 +30,8 @@ var initialstate= {
     location:'',
     sex:'',
     password:'',
-    password2:''
+    password2:'',
+    phone:''
   });
  
   const editingprofile=useMatch('/create-profile');
@@ -39,7 +43,8 @@ var initialstate= {
     location,
     sex,
     password,
-    password2
+    password2,
+    phone
   }=formData;
 
 
@@ -71,16 +76,23 @@ const onSubmit=e=>{
 }
 
   return (
+    <>
     <div> 
     <section className="container">
       <p className="lead"><i className="fas fa-user"></i> Edit Your Account</p>
       <form className="form"  onSubmit={e=>onSubmit(e)}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Blood Group" name="bloodgroup" required value={bloodgroup} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="Blood Group" name="bloodgroup" required value={bloodgroup} onChange={e=>onChange(e)}/>
         </div>
+        
+        <div className="form-group">
+          <input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
+           
+        </div>
+    
          
         <div className="form-group" >
         please Select your Gender :
@@ -91,14 +103,14 @@ const onSubmit=e=>{
       </div>
 
         <div className="form-group">
-          <input type="text" placeholder="city" name="location" value={location}  onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="city" name="location" value={location}  onChange={e=>onChange(e)}/>
            
         </div>
 
 
         
         <div className="form-group" >
-          <input
+          <Input
             type="password"
             placeholder="Password"
             name="password"
@@ -108,7 +120,7 @@ const onSubmit=e=>{
           />
         </div>
         <div className="form-group">
-          <input
+          <Input
             type="password"
             placeholder="Confirm Password"
             name="password2"
@@ -117,18 +129,32 @@ const onSubmit=e=>{
             onChange={e=>onChange(e)}
           />
         </div>
-        <input type="submit" className="btn btn-Danger" value="Register" />
+        <input type="submit" className="btn btn-primary" value="Update" />
       </form>
        
     </section>
     </div>
+
+<Popover title="Delete Account">
+<FloatButton
+  shape="circle"
+  onClick={e=>DeleteAccount(false)}
+  style={{
+    right: 94,
+    
+  }}
+  icon={<i class="fa-sharp fa-solid fa-trash"></i>}
+/>
+</Popover>
+</>
   )
 }
 
 EditDonorProfile.prototype={
   EditProfile:PropTypes.func.isRequired,
   profile:PropTypes.object.isRequired,
-  getCurrentProfile:PropTypes.func.isRequired
+  getCurrentProfile:PropTypes.func.isRequired,
+  DeleteAccount:PropTypes.func.isRequired
   
 }
 
@@ -137,4 +163,4 @@ const mapStateToProps=state=>({
   profile:state.profile
 })
  
-export default connect (mapStateToProps,{EditProfile,getCurrentProfile})( EditDonorProfile)
+export default connect (mapStateToProps,{EditProfile,getCurrentProfile,DeleteAccount})( EditDonorProfile)

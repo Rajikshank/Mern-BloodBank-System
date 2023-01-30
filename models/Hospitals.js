@@ -25,7 +25,14 @@ const HospitalModel= new mongoose.Schema({
     M_S_C:{ // maximum storage capacity 
         type:Number,
     
-    }
+    },
+    
+    phone:{
+        type : Number,
+        default:false,
+        required:true
+        },
+    
 
 
 })

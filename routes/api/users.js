@@ -86,7 +86,7 @@ const payload={
 
 
 //@route  POST api/users
-//@desc   edit user
+//@desc   edit or update  user
 //@access  Public 
 router.post('/edit',
 // validating input from user
@@ -134,6 +134,70 @@ if(user){
    
 }
 )
+
+// put notification to user
+//
+
+router.put('/addnotifications',auth,
+async (req,res)=>{
+    
+    
+    try {
+ 
+ //seek for the user details
+ let user = await User.findOne({_id:req.body.id})
+ 
+ if(user){
+      user.notifications.unshift({msg :req.body.msg})
+      
+      await user.save();
+      return res.json(user)
+ } 
+ 
+ 
+ 
+  return res.status(404).json({msg:'User not found '})
+  
+     
+    } catch (err) {
+     
+     console.error(err.message)
+     res.status(500).send('Server error')
+    }
+ 
+    
+ }
+)
+
+
+//@route  GET api/user/getnotifications
+//@desc   Get post by id 
+//@access  private
+
+router.get('/getnotifications',auth,async (req,res)=>{
+    try {
+        const user=await User.findById(req.user.id);
+
+        if(!user){
+            return res.status(404).json({msg:'User not found '})
+        }
+
+        const notifications=user.notifications;
+        user.notifications=[];
+        await user.save();        
+        res.json(notifications);
+
+    } catch (err) {
+    console.error(err.message)
+    if(err.kind==='ObjectId'){
+        return res.status(404).json({msg:'Notification object not found '})
+    }
+    res.status(500).send("Server Error")
+    }
+});
+
+
+
 
 
 module.exports=router

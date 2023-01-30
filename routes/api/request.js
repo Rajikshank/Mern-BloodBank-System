@@ -140,6 +140,22 @@ router.put('/Accept/:id',auth,async(req,res)=>{
 
         await request.save();
 
+
+            //adding notification
+            //seek for the user details of the post owner
+            let post_owner = await User.findById(request.user)
+        
+             if(post_owner){
+             post_owner.notifications.unshift({msg :`your request ${request.text} has been accepted by ${user.name} `})
+             
+             await post_owner.save();
+             console.log('notification added')
+            } 
+
+
+
+
+
         res.json(request.Accept);
 
     } catch (err) {

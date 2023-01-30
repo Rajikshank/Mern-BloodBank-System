@@ -41,7 +41,7 @@ const SingleRequest = ({auth,request:{_id,user,text,name,avatar,Accept,Date},del
             
             
 
-            {Accept.length<=0  && <button class="btn btn-success" onClick={e=>{addAccept(_id)}} > Accept Request </button>}
+            {user!==auth.user._id&&Accept.length<=0  && <button class="btn btn-success" onClick={e=>{addAccept(_id)}} > Accept Request </button>}
 
             { Accept.length>0 && Accept.filter(accept=>accept.user===auth.user._id).length>0 && <button class="btn btn-danger" onClick={e=>{removeAccept(_id) }} > Reject Request </button>}
             

@@ -9,9 +9,9 @@ const SingleHospitalProfile = ({profile:{user:{_id,name,avatar},location,A_B_C,N
        <i class="fa-solid fa-house-medical-circle-check fa-2xl"></i>
        <div>
         <h2>{name}</h2>
-        <p>Available Blood Packages : {' '} {A_B_C}</p>
-        {Array.isArray(N_B_G) && <p className='my-1'>Needed Blood Group :{' '} {N_B_G.join()}</p>}
-        <p>Location : {' '}{location}</p>
+        <p><i class="fa-solid fa-hospital"></i>Available Blood Packages : {' '} {A_B_C}</p>
+        {Array.isArray(N_B_G) && <p className='my-1'><i class="fa-solid fa-syringe"></i> Needed Blood Group :{' '} {N_B_G.join()}</p>}
+        <p><i class="fa-solid fa-location-dot"></i>Location : {' '}{location}</p>
        </div>
     </div>
   )

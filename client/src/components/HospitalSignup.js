@@ -14,10 +14,12 @@ export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
     ABC:'',
     city:'',
     password:'',
-    password2:''
+    password2:'',
+    phone:'',
+    M_S_C:''
   });
 
-  const {name,email,ABC,city,password,password2}=formData;
+  const {name,email,ABC,city,password,password2,M_S_C,phone}=formData;
   const onChange=e=>setFormdata({...formData,[e.target.name]:e.target.value})
   
   const onSubmit=async e=>{
@@ -31,7 +33,7 @@ export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
     else{
       console.log('success')
       console.log(formData)
-      authHospital({name,email,password,ABC,city});
+      authHospital(formData);
     }
     
   }
@@ -55,7 +57,16 @@ export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
         </div>
 
         <div className="form-group">
+          <input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
+           
+        </div>
+
+        <div className="form-group">
           <input type="text" placeholder="Available Blood package count" name="ABC" required value={ABC} onChange={e=>onChange(e)}/>
+        </div>
+
+        <div className="form-group">
+          <input type="text" placeholder="Maximum Storage Capacity" name="M_S_C" required value={M_S_C} onChange={e=>onChange(e)}/>
         </div>
 
         <div className="form-group">

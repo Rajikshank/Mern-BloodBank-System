@@ -9,6 +9,9 @@ import ABCCard from './ABCCard';
 import NBGCard from './NBGCard';
 import { Row } from 'antd';
 import Posts from '../post/Posts';
+
+
+
 const Dashboard = ({getCurrentProfile,auth:{user,Donor},profile:{profile,loading}}) => {
 
 useEffect(()=>{
@@ -31,7 +34,7 @@ useEffect(()=>{
     </p>
     {profile!==null ? 
     <Fragment>
-      <Action Hospital={user.Hospital}/>
+      {user.Hospital!==null && <Action Hospital={user.Hospital}/>}
       <Row  justify={'start'} gutter={[60,60]}>
       {user.Hospital && <ABCCard classname='fas fa-user' name='Available Blood Packages' value={profile.A_B_C} />}
       {user.Hospital && <NBGCard classname='fas fa-hand-holding-heart' name="Needed Blood Group" value={[...new Set(profile.N_B_G)].join()}/>}
@@ -39,6 +42,7 @@ useEffect(()=>{
 
       </Row>
       <Posts/>
+       
     </Fragment> :<Fragment> not available</Fragment>}
   </Fragment>
 }

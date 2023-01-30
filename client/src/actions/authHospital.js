@@ -24,7 +24,7 @@ export const loadUser=()=>async dispatch=>{
      }
 }
 
-export const authHospital=({name,email,password,ABC,city})=>async dispatch=>{
+export const authHospital=({name,email,password,ABC,city,phone,M_S_C})=>async dispatch=>{
     const config ={
         headers:{
             'Content-Type':'application/json'
@@ -44,7 +44,7 @@ export const authHospital=({name,email,password,ABC,city})=>async dispatch=>{
      console.log(ABC,city)
      const A_B_C=ABC 
      const location=city
-     const body2=JSON.stringify({A_B_C,location})
+     const body2=JSON.stringify({A_B_C,location,phone,M_S_C})
 
     try {
         

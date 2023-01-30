@@ -17,7 +17,7 @@ import SingleHospitalProfile from './SingleHospitalProfile';
      <Fragment>{loading ? <Loading/> :<Fragment>
         <h1 className='large text-primary'>Hospitals</h1>
         <p className='lead'>
-        <i class="fa-solid fa-hospital"></i> Currently available Blood Donation Centers in our System
+        <i class="fa-solid fa-hospital"></i> Currently available Blood Donation Centers/Hospitals in our System
         </p>
         <div className='profiles'>
         {profiles.length>0 ? (

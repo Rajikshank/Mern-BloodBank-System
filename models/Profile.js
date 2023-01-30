@@ -19,9 +19,10 @@ const ProfileModel=new mongoose.Schema({
         required:true
     },
 
-    covid:{
-    type : Boolean,
-    default:false
+    phone:{
+    type : Number,
+    default:false,
+    required:true
     },
 
     Donationhistory:[

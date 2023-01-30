@@ -40,7 +40,7 @@ router.get('/me',auth,async (req,res)=>{
 //@acess  private
 
 router.post('/',[auth,
-check('location','Location is not found please provide the location').not().isEmpty(),
+check('location','Location is not found please provide the location').not().isEmpty(),check('phone','contact no is empty').not().isEmpty(),
 check('A_B_C','Available Blood Package is not found please provide the available blood package count').not().isEmpty()],
 async (req,res)=>{
 
@@ -51,13 +51,14 @@ if(!errors.isEmpty()){ // checking for the errors
 }
 
  
-const {location,A_B_C,N_B_G,M_S_C}=req.body; // destructuring the req body
+const {location,A_B_C,N_B_G,M_S_C,phone}=req.body; // destructuring the req body
 
 
 const hospitalProfile={};// create the hospital profile locally
 hospitalProfile.user=req.user.id;
 hospitalProfile.location=location;
 hospitalProfile.A_B_C=A_B_C;
+hospitalProfile.phone=phone;
 if(N_B_G)hospitalProfile.N_B_G=N_B_G;
 if(M_S_C) hospitalProfile.M_S_C=M_S_C;
 

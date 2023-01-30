@@ -77,10 +77,10 @@ try {
         }
     }
 
-    const {name,A_B_C,location,password}=formdata
+    const {name,A_B_C,location,password,phone,M_S_C}=formdata
     
 
-    const send=JSON.stringify({A_B_C,location})
+    const send=JSON.stringify({A_B_C,location,phone,M_S_C})
     const send2=JSON.stringify({name,password})
 
 
@@ -111,10 +111,10 @@ try {
             }
         }
     
-        const {name,sex,bloodgroup,location,covid,password}=formdata
+        const {name,sex,bloodgroup,location,phone,password}=formdata
         
     
-        const send=JSON.stringify({sex,bloodgroup,location,covid })
+        const send=JSON.stringify({sex,bloodgroup,location,phone })
         const send2=JSON.stringify({name,password})
     
     
@@ -332,7 +332,7 @@ export const update_History =({ID,location,Date,Time})=>async dispatch=>{
 
 // delete account
 
-export const DeleteAccount =(id,Hospital)=>async dispatch =>{
+export const DeleteAccount =(Hospital)=>async dispatch =>{
 
     if(window.confirm('Are you sure? Do you want to Delete your Account Permanently?...')){
 

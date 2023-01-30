@@ -25,7 +25,18 @@ const UserSchema=new mongoose.Schema({
     Hospital:{
         type:Boolean,
         default:false
-    }
+    },
+    notifications:[
+        {
+            msg:{
+                type:String
+            },
+            date:{
+                type:Date,
+                default:Date.now
+            }
+        }
+    ]
 
 })
 

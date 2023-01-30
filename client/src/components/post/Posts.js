@@ -9,13 +9,13 @@ import Createpost from './Createpost'
  
 
 
-const Posts = ({getPosts,post:{posts,loading},auth:{user}}) => {
+const Posts = ({getPosts,post:{posts,loading,post},auth:{user}}) => {
   
 
     useEffect(()=>{
         getPosts(user.Hospital)
-    },[getPosts])
-
+    },[getPosts,post])
+    
     
   return loading ? <Loading/> :(<Fragment><Divider>Posts</Divider>
   <Createpost/>

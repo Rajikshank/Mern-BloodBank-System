@@ -1,10 +1,11 @@
-import { REGISTER_SUCCESS ,REGISTER_SUCCESS_HOS,REGISTER_FAIL,USER_LOADED,AUTH_ERROR,LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_SUCCESS_HOS, LOGOUT,USER_LOADED_HOS, DELETE_ACCCOUNT} from "../actions/types";
+import { REGISTER_SUCCESS ,REGISTER_SUCCESS_HOS,REGISTER_FAIL,USER_LOADED,AUTH_ERROR,LOGIN_FAIL,LOGIN_SUCCESS,LOGIN_SUCCESS_HOS, LOGOUT,USER_LOADED_HOS, DELETE_ACCCOUNT } from "../actions/types";
 
 const initialState={
     token:localStorage.getItem('token'),
     isAuthenticated:null,
     loading:true,
     user:null,
+    notifications:null,
     Donor:null 
 }
 
@@ -26,9 +27,11 @@ case USER_LOADED_HOS:
             ...state,
             isAuthenticated:true,
             user:payload,
-            Donor:false 
+            Donor:false ,
+            loading:false
         }    
 
+ 
 case REGISTER_SUCCESS:
 case LOGIN_SUCCESS:
     localStorage.setItem('token',payload.token)

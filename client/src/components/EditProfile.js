@@ -7,32 +7,26 @@ import {   Navigate, useMatch, useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { EditProfile } from '../actions/profile';
 import { getCurrentProfile } from '../actions/profile';
+import { Divider,FloatButton,Popover,Input } from 'antd'
+import { CustomerServiceOutlined } from '@ant-design/icons'
+import { DeleteAccount } from '../actions/profile';
 
-export const EditHospitalProfile= ({ auth:{user},profile:{profile,loading},EditProfile,getCurrentProfile})  => {
 
-var initialstate={}
+export const EditHospitalProfile= ({ auth:{user},profile:{profile,loading},EditProfile,getCurrentProfile,DeleteAccount})  => {
 
-if(user!==null && user.Hospital){
+ 
   
-initialstate={
+var initialstate={
   name:'', 
   A_B_C:'',
   location:'',
   password:'',
+  phone:'',
+  M_S_C:''
  
 }
-}
-else if (user !==null && user.Hospital===false){
-  initialstate={
-    name:'',
-    email:'',
-    bloodgroup:'',
-    city:'',
-    sex:'',
-    password:'',
-  
-  }
-}
+ 
+ 
 
 
   const [formData,setFormdata]=useState({
@@ -40,7 +34,9 @@ else if (user !==null && user.Hospital===false){
     A_B_C:'',
     location:'',
     password:'',
-    password2:''
+    password2:'',
+    M_S_C:'',
+    phone:''
   });
  
   const editingprofile=useMatch('/create-profile');
@@ -51,7 +47,9 @@ else if (user !==null && user.Hospital===false){
     A_B_C,
     location,
     password,
-    password2
+    password2,
+    phone,
+    M_S_C
   }=formData;
 
 
@@ -83,28 +81,37 @@ const onSubmit=e=>{
 }
 
   return (
+    <>
     <div> 
     <section className="container">
-      <p className="lead"><i className="fas fa-user"></i> Edit Your Account</p>
+      <p className="lead"><i className="fas fa-user"></i> Account Settings</p>
       <form className="form"  onSubmit={e=>onSubmit(e)}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
-        </div>
-         
-    
-        <div className="form-group">
-          <input type="text" placeholder="Available Blood package count" name="A_B_C" required value={A_B_C} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
         </div>
 
         <div className="form-group">
-          <input type="text" placeholder="city" name="location" value={location}  onChange={e=>onChange(e)}/>
+          <input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
+           
+        </div>
+
+        <div className="form-group">
+          <input type="text" placeholder="Maximum Storage Capacity" name="M_S_C" required value={M_S_C} onChange={e=>onChange(e)}/>
+        </div>
+    
+        <div className="form-group">
+          <Input type="text" placeholder="Available Blood package count" name="A_B_C" required value={A_B_C} onChange={e=>onChange(e)}/>
+        </div>
+
+        <div className="form-group">
+          <Input type="text" placeholder="city" name="location" value={location}  onChange={e=>onChange(e)}/>
            
         </div>
 
 
         
         <div className="form-group" >
-          <input
+          <Input
             type="password"
             placeholder="Password"
             name="password"
@@ -114,7 +121,7 @@ const onSubmit=e=>{
           />
         </div>
         <div className="form-group">
-          <input
+          <Input
             type="password"
             placeholder="Confirm Password"
             name="password2"
@@ -123,18 +130,35 @@ const onSubmit=e=>{
             onChange={e=>onChange(e)}
           />
         </div>
-        <input type="submit" className="btn btn-Danger" value="Register" />
+        <input type="submit" className="btn btn-primary" value="Update"  />
       </form>
-       
+     
     </section>
+    
     </div>
+    <Popover title="Delete Account">
+    <FloatButton
+      shape="circle"
+      onClick={e=>DeleteAccount(true)}
+      style={{
+        right: 94,
+        
+      }}
+      icon={<i class="fa-sharp fa-solid fa-trash"></i>}
+    />
+    </Popover>
+
+    </>
+
+
   )
 }
 
 EditHospitalProfile.prototype={
   EditProfile:PropTypes.func.isRequired,
   profile:PropTypes.object.isRequired,
-  getCurrentProfile:PropTypes.func.isRequired
+  getCurrentProfile:PropTypes.func.isRequired,
+  DeleteAccount:PropTypes.func.isRequired
   
 }
 
@@ -143,4 +167,4 @@ const mapStateToProps=state=>({
   profile:state.profile
 })
  
-export default connect (mapStateToProps,{EditProfile,getCurrentProfile})( EditHospitalProfile)
+export default connect (mapStateToProps,{EditProfile,getCurrentProfile,DeleteAccount})( EditHospitalProfile)

@@ -38,7 +38,7 @@ try {
 //@acess  private 
 
 router.post('/',[auth,
-    check('bloodgroup','BloodGroup is empty').not().isEmpty(),
+    check('bloodgroup','BloodGroup is empty').not().isEmpty(),check('phone','contact no is empty').not().isEmpty(),
     check('location','Location is empty').not().isEmpty()],
     async (req,res)=>{
         const errors=validationResult(req)
@@ -48,7 +48,7 @@ router.post('/',[auth,
         }
 
         
-        const {sex,location,bloodgroup,covid,prevDonationDate}=req.body;
+        const {sex,location,bloodgroup,phone}=req.body;
 
         const ProfileField={};
         ProfileField.user=req.user.id;
@@ -56,8 +56,8 @@ router.post('/',[auth,
         ProfileField.location=location;
         ProfileField.bloodgroup=bloodgroup;
         ProfileField.sex=sex;
-        if(covid) ProfileField.covid=covid;
-        if(prevDonationDate) ProfileField.prevDonationDate=prevDonationDate;
+        ProfileField.phone=phone;
+       
 
        try {
 
