@@ -4,7 +4,7 @@
   "description": "Blood_Bank_System",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "node server.js",
     "build":"npm install && cd client && npm install && npm run build",
     "server": "nodemon server",
     "client": "npm start --prefix client",
