@@ -70,7 +70,7 @@ export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
         </div>
 
         <div className="form-group">
-          <Input type="text" placeholder="city" name="city" value={city}  onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="location" name="city" value={city}  onChange={e=>onChange(e)}/>
            
         </div>
 
