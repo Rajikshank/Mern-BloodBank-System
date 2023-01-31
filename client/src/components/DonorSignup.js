@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
 import { authdonor } from '../actions/authdonor';
 import {   Navigate } from 'react-router-dom';
+import { Input } from 'antd';
 
 import PropTypes from 'prop-types'
 
@@ -52,23 +53,23 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form"  onSubmit={e=>onSubmit(e)}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name"  value={name} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="Name" name="name"  value={name} onChange={e=>onChange(e)}/>
         </div>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email"  value={email}   onChange={e=>onChange(e)} />
+          <Input type="email" placeholder="Email Address" name="email"  value={email}   onChange={e=>onChange(e)} />
            
         </div>
         <div className="form-group">
-          <input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
+          <Input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
            
         </div>
 
         <div className="form-group">
-          <input type="text" placeholder="bloodgroup" name="bloodgroup"   value={bloodgroup} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="bloodgroup" name="bloodgroup"   value={bloodgroup} onChange={e=>onChange(e)}/>
         </div>
 
         <div className="form-group">
-          <input type="text" placeholder="city" name="city" value={city}  onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="city" name="city" value={city}  onChange={e=>onChange(e)}/>
            
         </div>
 
@@ -82,7 +83,7 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
 
         
         <div className="form-group" >
-          <input
+          <Input
             type="password"
             placeholder="Password"
             name="password"
@@ -92,7 +93,7 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
           />
         </div>
         <div className="form-group">
-          <input
+          <Input
             type="password"
             placeholder="Confirm Password"
             name="password2"
@@ -101,7 +102,7 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
             onChange={e=>onChange(e)}
           />
         </div>
-        <input type="submit" className="btn btn-Danger" value="Register" />
+        <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="text-Danger">
         Already have an account? <a  href="login.html" className='text-Danger'>Sign In</a>

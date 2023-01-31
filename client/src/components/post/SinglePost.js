@@ -10,7 +10,7 @@ import { addParticipants,removeParticipants,approvepost } from '../../actions/po
 const SinglePost = ({auth,post:{_id,user,text,name,avatar,participants,Date,Aprovel},deletepost,addParticipants,approvepost,postview}) => {
   const navigate=useNavigate();
  
-  var count=participants.filter(participant=>participant.user===auth.user._id)
+  
 
   return (
     <div class="post bg-timeline p-1 my-1">
@@ -49,9 +49,10 @@ const SinglePost = ({auth,post:{_id,user,text,name,avatar,participants,Date,Apro
             </>
             }
             
+            
 
-            {postview  && participants.filter(participant=>participant.user===auth.user._id).length===0 &&  <button class="btn btn-success" onClick={e=>addParticipants(_id)} > Participate</button>}
-
+            {participants.length>0 && postview  && participants.filter(participant=>participant.user===auth.user._id).length===0 ||participants.length===0&& postview && <button class="btn btn-success" onClick={e=>addParticipants(_id)} > Participate</button>}
+          
               
 
 

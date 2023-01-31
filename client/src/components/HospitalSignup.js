@@ -4,7 +4,7 @@ import { setAlert } from '../actions/alert';
 import PropTypes from 'prop-types'
 import authHospital from '../actions/authHospital';
 import {   Navigate } from 'react-router-dom';
-
+import { Input } from 'antd';
 
 export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
 
@@ -49,35 +49,37 @@ export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
       <form className="form"  onSubmit={e=>onSubmit(e)}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
         </div>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email"  value={email} required onChange={e=>onChange(e)} />
+          <Input type="email" placeholder="Email Address" name="email"  value={email} required onChange={e=>onChange(e)} />
            
         </div>
 
         <div className="form-group">
-          <input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
+          <Input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
            
         </div>
 
         <div className="form-group">
-          <input type="text" placeholder="Available Blood package count" name="ABC" required value={ABC} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="Available Blood package count" name="ABC" required value={ABC} onChange={e=>onChange(e)}/>
         </div>
 
         <div className="form-group">
-          <input type="text" placeholder="Maximum Storage Capacity" name="M_S_C" required value={M_S_C} onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="Maximum Storage Capacity" name="M_S_C" required value={M_S_C} onChange={e=>onChange(e)}/>
         </div>
 
         <div className="form-group">
-          <input type="text" placeholder="city" name="city" value={city}  onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="city" name="city" value={city}  onChange={e=>onChange(e)}/>
            
         </div>
 
+
+    
 
         
         <div className="form-group" >
-          <input
+          <Input
             type="password"
             placeholder="Password"
             name="password"
@@ -87,7 +89,7 @@ export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
           />
         </div>
         <div className="form-group">
-          <input
+          <Input
             type="password"
             placeholder="Confirm Password"
             name="password2"
