@@ -24,6 +24,7 @@ import Requests from './components/request/Requests';
 import Requestview from './components/request/Requestview';
 import DonationEntry from './components/Dashboard/DonationEntry';
 import DonHistory from './components/Profile/DonHistory';
+import About from './components/About';
 
 
 if(localStorage.token){
@@ -54,6 +55,7 @@ function App() {
     <Route path='/Hospitalsignup' element={<HospitalSignup/>}/>
     
     <Route path='/login' element={<Login/>}/>
+    <Route path='/About' element={<About/>}/>
     <Route path="/Dashboard" element={<PrivateRoute component={Dashboard} />} />
     <Route path="/Hospitals" element={<PrivateRoute component={Hospitals} />} />
     <Route path="/Requests" element={<PrivateRoute component={Requests} />} />
