@@ -71,7 +71,7 @@ router.put('/all/approve/:id',auth, async(req,res)=>{
             let post_owner = await User.findById(post.user)
         
              if(post_owner){
-             post_owner.notifications.unshift({msg :`$your post ${post.text} has been approved by the admin `})
+             post_owner.notifications.unshift({msg :`your post ${post.text} has been approved by the admin `})
              
              await post_owner.save();
              console.log('notification added')

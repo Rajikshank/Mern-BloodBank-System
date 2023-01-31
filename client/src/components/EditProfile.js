@@ -104,7 +104,7 @@ const onSubmit=e=>{
         </div>
 
         <div className="form-group">
-          <Input type="text" placeholder="city" name="location" value={location}  onChange={e=>onChange(e)}/>
+          <Input type="text" placeholder="location" name="location" value={location}  onChange={e=>onChange(e)}/>
            
         </div>
 
@@ -139,7 +139,7 @@ const onSubmit=e=>{
     <Popover title="Delete Account">
     <FloatButton
       shape="circle"
-      onClick={e=>DeleteAccount(true)}
+      onClick={e=>DeleteAccount(true,navigate)}
       style={{
         right: 94,
         

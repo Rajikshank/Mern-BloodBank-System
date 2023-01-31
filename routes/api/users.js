@@ -113,6 +113,13 @@ async (req,res)=>{
 //seek for the user details
 let user = await User.findOne({_id:req.user.id})
 
+let check = await User.findOne({name})
+
+if(check){
+ return res.status(400).json({errors:[{msg:'User name already exits'}]})
+} 
+
+
 if(user){
      user.name =name; 
      user.password=await bcrypt.hash(password,salt);

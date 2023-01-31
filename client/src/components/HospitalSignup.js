@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
 import PropTypes from 'prop-types'
 import authHospital from '../actions/authHospital';
-import {   Navigate } from 'react-router-dom';
+import {   Navigate,Link } from 'react-router-dom';
 import { Input } from 'antd';
 
 export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
@@ -101,7 +101,7 @@ export const Hospitalsignup = ({setAlert,authHospital,isAuthenticated})  => {
         <input type="submit" className="btn btn-Danger" value="Register" />
       </form>
       <p className="text-Danger">
-        Already have an account? <a  href="login.html" className='text-Danger'>Sign In</a>
+        Already have an account? <Link  to={"/login"} className='text-Danger'>Sign In</Link>
       </p>
     </section>
     </div>

@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import { connect } from 'react-redux';
 import { setAlert } from '../actions/alert';
 import { authdonor } from '../actions/authdonor';
-import {   Navigate } from 'react-router-dom';
-import { Input } from 'antd';
+import {   Link, Navigate } from 'react-router-dom';
+import { Input,Radio } from 'antd';
 
 import PropTypes from 'prop-types'
 
@@ -63,10 +63,22 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
           <Input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
            
         </div>
-
+ 
         <div className="form-group">
-          <Input type="text" placeholder="bloodgroup" name="bloodgroup"   value={bloodgroup} onChange={e=>onChange(e)}/>
-        </div>
+        Blood Group:
+          <br/>
+        <Radio.Group onChange={onChange} name="bloodgroup"  value={bloodgroup}>
+      <Radio value={'A+'}>A+</Radio>
+      <Radio value={'A-'}>A-</Radio>
+      <Radio value={'AB+'}>AB+</Radio>
+      <Radio value={'AB-'}>AB-</Radio>
+      <Radio value={'B+'}>B+</Radio>
+      <Radio value={'B-'}>B-</Radio>
+      <Radio value={'O+'}>O+</Radio>
+      <Radio value={'O-'}>O-</Radio>
+       </Radio.Group>
+       </div>
+
 
         <div className="form-group">
           <Input type="text" placeholder="city" name="city" value={city}  onChange={e=>onChange(e)}/>
@@ -105,7 +117,7 @@ export const DonorSignup = ({setAlert,authdonor,isAuthenticated}) => {
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
       <p className="text-Danger">
-        Already have an account? <a  href="login.html" className='text-Danger'>Sign In</a>
+        Already have an account? <Link  to={"/login"} className='text-Danger'>Sign In</Link>
       </p>
     </section>
     </div>

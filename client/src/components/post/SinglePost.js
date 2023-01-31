@@ -61,7 +61,7 @@ const SinglePost = ({auth,post:{_id,user,text,name,avatar,participants,Date,Apro
               Approve  
             </button>}
             
-            {console.log('loading',auth.loading)}
+            
             {!auth.loading && user === auth.user._id  &&(
               
             <button

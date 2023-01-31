@@ -7,10 +7,11 @@ import {   Navigate, useMatch, useNavigate } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { EditProfile } from '../actions/profile';
 import { getCurrentProfile } from '../actions/profile';
-import { Divider,FloatButton,Popover,Input } from 'antd'
+import { Divider,FloatButton,Popover,Input,Radio } from 'antd'
 import { DeleteAccount } from '../actions/profile'
 
 export const EditDonorProfile= ({ auth:{user},profile:{profile,loading},EditProfile,getCurrentProfile,DeleteAccount})  => {
+   
 
 var initialstate= {
     name:'',
@@ -84,10 +85,22 @@ const onSubmit=e=>{
         <div className="form-group">
           <Input type="text" placeholder="Name" name="name" required value={name} onChange={e=>onChange(e)}/>
         </div>
+
         <div className="form-group">
-          <Input type="text" placeholder="Blood Group" name="bloodgroup" required value={bloodgroup} onChange={e=>onChange(e)}/>
-        </div>
-        
+          Blood Group:
+          <br/>
+        <Radio.Group onChange={onChange} name="bloodgroup"  value={bloodgroup}>
+          <Radio value={'A+'}>A+</Radio>
+          <Radio value={'A-'}>A-</Radio>
+          <Radio value={'AB+'}>AB+</Radio>
+          <Radio value={'AB-'}>AB-</Radio>
+          <Radio value={'B+'}>B+</Radio>
+          <Radio value={'B-'}>B-</Radio>
+          <Radio value={'O+'}>O+</Radio>
+        <Radio value={'O-'}>O-</Radio>
+
+       </Radio.Group>
+       </div>
         <div className="form-group">
           <input type="text" placeholder="Contact Number" name="phone"  value={phone}   onChange={e=>onChange(e)} />
            
@@ -97,9 +110,9 @@ const onSubmit=e=>{
         <div className="form-group" >
         please Select your Gender :
         <br/>
-        <input type="radio" value="MALE" defaultChecked name="sex" onChange={e=>onChange(e)}/> Male
+        <input type="radio" value={sex} defaultChecked name="sex" onChange={e=>onChange(e)}/> Male
         <br/>
-        <input type="radio" value="FEMALE" name="sex" onChange={e=>onChange(e)}/> Female
+        <input type="radio" value={sex} name="sex" onChange={e=>onChange(e)}/> Female
       </div>
 
         <div className="form-group">
@@ -138,7 +151,7 @@ const onSubmit=e=>{
 <Popover title="Delete Account">
 <FloatButton
   shape="circle"
-  onClick={e=>DeleteAccount(false)}
+  onClick={e=>DeleteAccount(false,navigate)}
   style={{
     right: 94,
     

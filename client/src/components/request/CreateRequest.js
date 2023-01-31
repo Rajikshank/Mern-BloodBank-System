@@ -2,28 +2,30 @@ import React,{useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import { addrequest } from '../../actions/request'
+import { Input } from 'antd';
+
 
 
 const CreateRequest = ({addrequest,auth}) => {
     const [text,setText]=useState('')
+    const { TextArea } = Input;
 
   return   <><div class="bg-primary p">
-      <h3>Say Something...</h3>
+      <h3>Create a Request to other Hospitals...</h3>
   </div><form class="form my-1" onSubmit={e=>{
     e.preventDefault();
     addrequest({'text':text});
-    console.log(text)
     setText('')
   }}>
-          <textarea
+          <TextArea
               name="text"
               cols="30"
               rows="5"
               value={text}
-              placeholder="Create a post"
+              placeholder="Create a request"
               required
               onChange={e=>setText(e.target.value)}
-          ></textarea>
+          ></TextArea>
           <input type="submit" class="btn btn-dark my-1" value="Submit" />
       </form></>
  

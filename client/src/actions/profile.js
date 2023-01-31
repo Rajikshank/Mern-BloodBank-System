@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { setAlert } from "./alert";
 import { loadUser } from "./authHospital";
 import { CLEAR_PROFILE, DELETE_ACCCOUNT, GET_PROFILE,GET_PROFILES,PROFILE_ERROR, UPDATE_PROFILE } from "./types";
@@ -332,7 +333,8 @@ export const update_History =({ID,location,Date,Time})=>async dispatch=>{
 
 // delete account
 
-export const DeleteAccount =(Hospital)=>async dispatch =>{
+export const DeleteAccount =(Hospital,navigate)=>async dispatch =>{
+      
 
     if(window.confirm('Are you sure? Do you want to Delete your Account Permanently?...')){
 
@@ -347,6 +349,7 @@ export const DeleteAccount =(Hospital)=>async dispatch =>{
             dispatch({type:DELETE_ACCCOUNT})
 
             dispatch(setAlert('Account Deleted','success'))
+            navigate('/')
         } catch (err) {
             dispatch({
         
